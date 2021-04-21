@@ -6,6 +6,7 @@ URL_PATH="/questions"
 curl "${API}${URL_PATH}" \
   --include \
   --request GET \
-  --header "Authorization: Bearer ${TOKEN}"
+  --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ${TOKEN}" \
 
 echo
