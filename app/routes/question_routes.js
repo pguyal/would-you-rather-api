@@ -27,8 +27,13 @@ const router = express.Router()
 
 // INDEX
 // GET /questions
+// only return the events that are owned by
+// the user making the request
 router.get('/questions', requireToken, (req, res, next) => {
-  Question.find()
+  // access req.user for owner id
+  const id = req.user.id
+  // find the questions with owner of req.user.id
+  Question.find({ owner: id })
     .then(questions => {
       // `questions` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
@@ -41,17 +46,17 @@ router.get('/questions', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// SHOW
-// GET /questions/5a7db6c74d55bc51bdf39793
-router.get('/questions/:id', requireToken, (req, res, next) => {
-  // req.params.id will be set based on the `:id` in the route
-  Question.findById(req.params.id)
-    .then(handle404)
-    // if `findById` is succesful, respond with 200 and "question" JSON
-    .then(question => res.status(200).json({ question: question.toObject() }))
-    // if an error occurs, pass it to the handler
-    .catch(next)
-})
+// // SHOW
+// // GET /questions/5a7db6c74d55bc51bdf39793
+// router.get('/questions/:id', requireToken, (req, res, next) => {
+//   // req.params.id will be set based on the `:id` in the route
+//   Question.findById(req.params.id)
+//     .then(handle404)
+//     // if `findById` is succesful, respond with 200 and "question" JSON
+//     .then(question => res.status(200).json({ question: question.toObject() }))
+//     // if an error occurs, pass it to the handler
+//     .catch(next)
+// })
 
 // CREATE
 // POST /questions
