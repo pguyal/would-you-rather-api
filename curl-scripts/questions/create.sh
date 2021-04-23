@@ -1,6 +1,6 @@
 # TOKEN= TEXT="Would you rather be a dog or a cat" OPTIONONE="Dog" OPTIONTWO="Cat" sh curl-scripts/questions/create.sh
 
-API="https://sheltered-beach-59716.herokuapp.com"
+API="http://localhost:4741"
 URL_PATH="/questions"
 
 curl "${API}${URL_PATH}" \

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-API="https://sheltered-beach-59716.herokuapp.com"
+API="http://localhost:4741"
 URL_PATH="/change-password"
 
 curl "${API}${URL_PATH}/" \
